@@ -12,6 +12,4 @@ RUN poetry install --no-root
 
 RUN poetry run python src/manage.py migrate
 
-EXPOSE 80
-
 CMD poetry run python src/manage.py runserver 0.0.0.0:80
