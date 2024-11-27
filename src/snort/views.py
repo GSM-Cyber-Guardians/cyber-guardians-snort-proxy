@@ -1,5 +1,4 @@
 from django.db.transaction import atomic
-from django_eventstream import send_event
 from rest_framework import status
 from rest_framework.request import Request
 from rest_framework.response import Response
@@ -20,5 +19,4 @@ class SnortLogView(APIView):
         serializer = SnortLogSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        send_event("snort", "snort log", {'sid': serializer.validated_data['sid']})
         return Response(status=status.HTTP_201_CREATED)
