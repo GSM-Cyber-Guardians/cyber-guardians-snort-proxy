@@ -19,7 +19,7 @@ class SnortLogSerializer(serializers.ModelSerializer):
         log = SnortLog.objects.create(**data, type=type)
         send_event(
             channel="snort",
-            event_type="snort log",
+            event_type="log",
             data={
                 'type': type,
                 'ip': log.ip,
