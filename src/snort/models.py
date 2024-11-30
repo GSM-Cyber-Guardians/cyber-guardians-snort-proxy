@@ -2,10 +2,10 @@ from django.db import models
 
 
 class SnortType(models.IntegerChoices):
-    HTTP = 1, 'HTTP'
-    ICMP = 2, 'ICMP'
-    DNS = 3, 'DNS'
-    SQL_INJECTION = 4, 'SQL_INJECTION'
+    HTTP = 1000001, 'HTTP'
+    DNS = 1000002, 'DNS'
+    ICMP = 1000003, 'ICMP'
+    SQL_INJECTION = 1000004, 'SQL_INJECTION'
 
 
 class SnortLog(models.Model):
