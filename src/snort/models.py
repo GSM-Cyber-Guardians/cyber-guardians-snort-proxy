@@ -1,16 +1,18 @@
 from django.db import models
+from range_key_dict import RangeKeyDict
 
 
-class SnortType(models.IntegerChoices):
-    HTTP = 1000001, 'HTTP'
-    DNS = 1000002, 'DNS'
-    ICMP = 1000003, 'ICMP'
-    SQL_INJECTION = 1000004, 'SQL_INJECTION'
+snort_type = RangeKeyDict({
+    (1000001, 1000002): 'HTTP',
+    (1000002, 1000003): 'DNS',
+    (1000003, 1000004): 'ICMP',
+    (1000004, 1000011): 'SQL_INJECTION'
+})
 
 
 class SnortLog(models.Model):
     sid = models.IntegerField()
-    type = models.CharField(choices=SnortType.choices, max_length=20)
+    type = models.CharField(max_length=20)
     ip = models.CharField(max_length=16)
     date = models.DateTimeField(auto_now_add=True)
 
