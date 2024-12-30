@@ -19,5 +19,5 @@ class SnortLogView(APIView):
         serializer = SnortLogSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         obj = serializer.save()
-        serializer.send_event(obj=obj)
+        serializer.send_event(data=serializer.validated_data, obj=obj)
         return Response(status=status.HTTP_201_CREATED)

@@ -15,7 +15,9 @@ class SnortLogSerializer(serializers.ModelSerializer):
 
     @atomic
     def create(self, data):
-        return SnortLog.objects.create(**data, type=type)
+        sid = data.get('sid')
+        detected_type = snort_type.get(sid)
+        return SnortLog.objects.create(**data, type=detected_type)
 
     def send_event(self, data, obj):
         type = snort_type.get(data['sid'])
